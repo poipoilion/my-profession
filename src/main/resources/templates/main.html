@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of goods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:each="el : ${possible_solutions}">
+    <h1 th:text="${el.id_case.faculty}"></h1>
+    <h1 th:text="${el.header}"></h1>
+    <h1 th:text="${el.solution1}"></h1>
+</div>
+</body>
+</html>
