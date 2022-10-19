@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of goods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1 th:text="${sub_chapter.header}"></h1>
+    <p th:text="${sub_chapter.information}"></p>
+    <div th:if="${sub_chapter.video} != NULL">
+        <p th:text="${sub_chapter.video}"></p>
+    </div>
+    <div th:if="${sub_chapter.information1} != NULL">
+        <p th:text="${sub_chapter.information1}"></p>
+    </div>
+    <div th:if="${sub_chapter.picture1} != NULL">
+        <p th:text="${sub_chapter.picture1}"></p>
+    </div>
+
+
+    <!--/*Переход от введения к первому подразделу*/-->
+    <div th:if="${sub_chapter.s_number} == 0">
+        <a th:href="'/' + ${sub_chapter.chapter.id_case.id} + '/chapter/1/subchapter/1'" th:text="Далее"></a>
+    </div>
+
+    <!--/*Переход от первого к решениям ко второму подразделу*/-->
+    <div th:if="${sub_chapter.s_number} == 1 and ${sub_chapter.chapter.solutions}">
+    <a th:href="'/' + ${sub_chapter.chapter.id_case.id} + '/chapter/' + ${sub_chapter.chapter.s_number}+ '/solutions'" th:text="Далее"></a>
+    </div>
+
+    <!--/*Переход от первого ко второму подразделу*/-->
+    <div th:if="${sub_chapter.s_number} == 1 and ${sub_chapter.chapter.solutions} == False">
+        <a th:href="'/' + ${sub_chapter.chapter.id_case.id} + '/chapter/' + ${sub_chapter.chapter.s_number}+ '/subchapter/2'" th:text="Далее"></a>
+    </div>
+
+    <!--/*Переход от раздела к следующему*/-->
+    <div th:if="${sub_chapter.s_number} == 2 and ${sub_chapter.chapter.id_case.qty_chapter} != ${sub_chapter.chapter.s_number}">
+        <a th:href="'/' + ${sub_chapter.chapter.id_case.id} + '/chapter/' + ${sub_chapter.chapter.s_number+1} +'/subchapter/1'"
+           th:text="Далее"></a>
+    </div>
+
+    <!--/*Переход от раздела к заключению*/-->
+    <div th:if="${sub_chapter.s_number} == 2 and ${sub_chapter.chapter.id_case.qty_chapter} == ${sub_chapter.chapter.s_number}">
+        <a th:href="'/' + ${sub_chapter.chapter.id_case.id} + '/chapter/1/subchapter/3'"
+           th:text="Далее"></a>
+    </div>
+
+    <input type="button" onclick="history.back();" value="Назад"/>
+
+</body>
+</html>

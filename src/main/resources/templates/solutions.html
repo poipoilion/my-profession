@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>List of goods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 th:text="${solutions.header}"></h1>
+<p th:text="${solutions.information}"></p>
+<p th:text="${solutions.solution1}"></p>
+<p th:text="${solutions.solution2}"></p>
+<a th:href="'/' + ${solutions.id_case.id} + '/chapter/' + ${solutions.s_number}+ '/subchapter/' + '2'" th:text="Далее"></a>
+<input type="button" onclick="history.back();" value="Назад"/>
+</body>
+</html>
